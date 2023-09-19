@@ -1,12 +1,10 @@
 ﻿@model DevIO.App.ViewModels.FornecedorViewModel
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Novo Fornecedor";
 }
 
-<h1>Create</h1>
-
-<h4>FornecedorViewModel</h4>
+<h1>@ViewData["Title"]</h1>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -22,25 +20,32 @@
                 <input asp-for="Documento" class="form-control" />
                 <span asp-validation-for="Documento" class="text-danger"></span>
             </div>
+            <br />
             <div class="form-group">
-                <label asp-for="TipoFornecedor" class="control-label"></label>
-                <input asp-for="TipoFornecedor" class="form-control" />
-                <span asp-validation-for="TipoFornecedor" class="text-danger"></span>
+                <label asp-for="TipoFornecedor" class="control-label">Tipo:</label> <br />
+                <input type="radio" value="1" asp-for="TipoFornecedor" checked /> Pessoa Física <br />
+                <input type="radio" value="2" asp-for="TipoFornecedor" /> Pessoa Jurídica <br />
             </div>
+            <br />
             <div class="form-group form-check">
                 <label class="form-check-label">
                     <input class="form-check-input" asp-for="Ativo" /> @Html.DisplayNameFor(model => model.Ativo)
                 </label>
             </div>
+
+            <br/>
+            <h4>Endereço:</h4>
+            <hr />
+
+            <partial name="_Endereco" />
+            <br />
+
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Cadastrar" class="btn btn-primary" />
+                <a class="btn btn-default" asp-action="Index">Voltar</a>
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {
