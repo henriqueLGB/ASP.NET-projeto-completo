@@ -35,7 +35,7 @@ namespace DevIO.Data.Repository
 
         public virtual async Task<List<TEntity>> ObterTodos()
         {
-            return await dbSet.ToListAsync();
+            return await dbSet.AsNoTracking().ToListAsync();
         }
 
         public virtual async Task Adicionar(TEntity entity)

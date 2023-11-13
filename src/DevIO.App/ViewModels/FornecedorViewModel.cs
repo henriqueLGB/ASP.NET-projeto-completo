@@ -15,8 +15,10 @@ namespace DevIO.App.ViewModels
         [Required(ErrorMessage = "O campo {0} é obrigatório")]
         [StringLength(14, ErrorMessage = "O campo {0} precisa ter entre {2} e {1}", MinimumLength = 11)]
         public string Documento { get; set; }
+
+        [DisplayName("Tipo")]
         public int TipoFornecedor { get; set; }
-        public EnderecoViewModel Endereco { get; set; }
+        public EnderecoViewModel? Endereco { get; set; }
 
         [DisplayName("Ativo?")]
         public bool Ativo { get; set; }
