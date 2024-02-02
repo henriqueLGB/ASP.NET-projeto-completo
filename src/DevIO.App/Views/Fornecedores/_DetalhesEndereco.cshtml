@@ -38,28 +38,28 @@
             </thead>
             <tr>
                 <td>
-                    @Html.DisplayNameFor(model => model.Endereco.Logradouro)
+                    @Model.Endereco.Logradouro
                 </td>
                 <td>
-                    @Html.DisplayNameFor(model => model.Endereco.Numero)
+                    @Model.Endereco.Numero
                 </td>
                 <td>
-                    @Html.DisplayNameFor(model => model.Endereco.Complemento)
+                    @Model.Endereco.Complemento
                 </td>
                 <td>
-                    @Html.DisplayNameFor(model => model.Endereco.Cep)
+                    @Model.Endereco.Cep
                 </td>
                 <td>
-                    @Html.DisplayNameFor(model => model.Endereco.Bairro)
+                    @Model.Endereco.Bairro
                 </td>
                 <td>
-                    @Html.DisplayNameFor(model => model.Endereco.Cidade)
+                    @Model.Endereco.Cidade
                 </td>
                 <td>
-                    @Html.DisplayNameFor(model => model.Endereco.Estado)
+                    @Model.Endereco.Estado
                 </td>
                 <td>
-                    <a class="btn btn-info">
+                    <a asp-action="AtualizaEndereco" asp-route-id="@Model.Id" class="btn btn-info"  data-modal="">
                         <span title="Editar" class="fa fa-pencil-alt"></span>
                     </a>
                 </td>
