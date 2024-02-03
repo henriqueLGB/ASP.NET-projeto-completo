@@ -20,11 +20,13 @@ namespace DevIO.App.Controllers
             _fornecedorRepository = fornecedorRepository;
         }
 
+        [Route("lista-de-produtos")]
         public async Task<IActionResult> Index()
         {
             return View(_mapper.Map<IEnumerable<ProdutoViewModel>>(await _produtoRespository.ObterProdutosFornecedores()));
         }
 
+        [Route("dados-produto/{id:guid}")]
         public async Task<IActionResult> Details(Guid id)
         {
 
@@ -37,6 +39,7 @@ namespace DevIO.App.Controllers
             return View(produtoViewModel);
         }
 
+        [Route("novo-produto")]
         public async Task<IActionResult> Create()
         {
             var produtoViewModel = await PopularFornecedores(new ProdutoViewModel());
@@ -66,6 +69,7 @@ namespace DevIO.App.Controllers
 
         }
 
+        [Route("editar-produto/{id:guid}")]
         public async Task<IActionResult> Edit(Guid id)
         {
 
@@ -103,6 +107,7 @@ namespace DevIO.App.Controllers
             return RedirectToAction("Index");
         }
 
+        [Route("excluir-produto/{id:guid}")]
         public async Task<IActionResult> Delete(Guid id)
         {
 
