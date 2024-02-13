@@ -11,13 +11,19 @@ namespace DevIO.App.Controllers
     {
         private readonly IProdutosRepository _produtoRespository;
         private readonly IFornecedorRepository _fornecedorRepository;
+        private readonly IProdutoService _produtoService;
         private readonly IMapper _mapper;
 
-        public ProdutosController(IProdutosRepository produtosRepository, IMapper mapper, IFornecedorRepository fornecedorRepository)
+        public ProdutosController(  IProdutosRepository produtosRepository, 
+                                    IMapper mapper, 
+                                    IFornecedorRepository fornecedorRepository, 
+                                    IProdutoService produtoService,
+                                    INotificador notificador) : base(notificador)
         {
             _produtoRespository = produtosRepository;
             _mapper = mapper;
             _fornecedorRepository = fornecedorRepository;
+            _produtoService = produtoService;
         }
 
         [Route("lista-de-produtos")]
@@ -62,8 +68,10 @@ namespace DevIO.App.Controllers
             if (!await UploadArquivo(produtoViewModel.ImagemUpload, imgPrefixo)) return View(produtoViewModel);
 
             produtoViewModel.Imagem = imgPrefixo + produtoViewModel.ImagemUpload.FileName;
-
-            await _produtoRespository.Adicionar(_mapper.Map<Produto>(produtoViewModel));
+            await _produtoService.Adicionar(_mapper.Map<Produto>(produtoViewModel));
+            
+            //VERIFICANDO PARA NOTIFICAR CASO OCORRÁ ALGUM ERRO
+            if(!OperacaoValida()) return View(produtoViewModel);
 
             return RedirectToAction("Index");
 
@@ -102,7 +110,10 @@ namespace DevIO.App.Controllers
                 produtoViewModel.Imagem = imgPrefixo + produtoViewModel.ImagemUpload.FileName;
             }
 
-            await _produtoRespository.Atualizar(_mapper.Map<Produto>(produtoViewModel));
+            await _produtoService.Atualizar(_mapper.Map<Produto>(produtoViewModel));
+
+            //VERIFICANDO PARA NOTIFICAR CASO OCORRÁ ALGUM ERRO
+            if (!OperacaoValida()) return View(produtoViewModel);
 
             return RedirectToAction("Index");
         }
@@ -126,7 +137,10 @@ namespace DevIO.App.Controllers
 
             if (produto == null) return NotFound();
 
-            await _produtoRespository.Remover(id);
+            await _produtoService.Remover(id);
+
+            //VERIFICANDO PARA NOTIFICAR CASO OCORRÁ ALGUM ERRO
+            if (!OperacaoValida()) return View(produto);
 
             return RedirectToAction("Index");
         }
