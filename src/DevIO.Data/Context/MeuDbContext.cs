@@ -1,4 +1,5 @@
 ﻿using DevIO.Business.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DevIO.Data.Context
 {
-    public class MeuDbContext : DbContext
+    public class MeuDbContext : IdentityDbContext
     {
 
         public MeuDbContext(DbContextOptions options): base(options)
