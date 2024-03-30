@@ -43,11 +43,13 @@
 function BuscaCep() {
     $(document).ready(function () {
 
-        //Limpa valores do formulário de cep
-        $("#EnderecoLogradouro").val("")
-        $("#EnderecoBairro").val("")
-        $("#EnderecoCidade").val("")
-        $("#EnderecoEstado").val("")
+        function limpa_formulario_cep() {
+            // Limpa valores do formulário de cep.
+            $("#Endereco_Logradouro").val("");
+            $("#Endereco_Bairro").val("");
+            $("#Endereco_Cidade").val("");
+            $("#Endereco_Estado").val("");
+        }
 
         //Quando o campo cep perde o foco
         $("#EnderecoCep").blur(function () {

@@ -53,6 +53,8 @@ namespace DevIO.Business.Services
         public async Task AtualizarEndereco(Endereco endereco)
         {
             if (!ExecutarValidacao(new EnderecoValidation(), endereco)) return;
+
+            await _enderecoRepository.Atualizar(endereco);
         }
 
         public async Task Remover(Guid id)
@@ -60,6 +62,13 @@ namespace DevIO.Business.Services
             if (_fornecedorRepository.ObterFornecedorProdutosEndereco(id).Result.Produtos.Any())
             {
                 Notificar("O fornecedor possui produtos cadastrados");
+            }
+
+            var endereco = await _enderecoRepository.ObterEnderecoPorFornecedor(id);
+
+            if (endereco != null)
+            {
+                await _enderecoRepository.Remover(endereco.Id);
             }
 
             await _fornecedorRepository.Remover(id);

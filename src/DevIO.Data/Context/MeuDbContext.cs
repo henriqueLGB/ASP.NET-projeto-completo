@@ -14,7 +14,8 @@ namespace DevIO.Data.Context
 
         public MeuDbContext(DbContextOptions options): base(options)
         {
-            
+            ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
+            ChangeTracker.AutoDetectChangesEnabled = false;
         }
 
         public DbSet<Produto> produtos { get; set; }
