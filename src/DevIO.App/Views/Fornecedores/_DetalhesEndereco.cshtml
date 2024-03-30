@@ -59,12 +59,9 @@
                     @Model.Endereco.Estado
                 </td>
                 <td>
-                    @if (ViewData["Detalhe"] is not bool)
-                    {
-                        <a asp-action="AtualizaEndereco" asp-route-id="@Model.Id" class="btn btn-info" data-modal="">
-                            <span title="Editar" class="fa fa-pencil-alt"></span>
-                        </a>
-                    }
+                    <a supress-by-action="Edit,ObterEndereco" asp-action="AtualizaEndereco" asp-route-id="@Model.Id" class="btn btn-info" data-modal="">
+                        <span title="Editar" class="fa fa-pencil-alt"></span>
+                    </a>
                 </td>
             </tr>
 

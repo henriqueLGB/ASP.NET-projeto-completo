@@ -2,12 +2,6 @@
 @model DevIO.App.ViewModels.FornecedorViewModel
 
 @{
-    //CONFIGURA O VIEW DATA PARA PASSAR NA PARTIALVIEW
-    bool detalhe = true;
-    var viewData = new ViewDataDictionary(ViewData)
-    {
-        { "Detalhe", detalhe }
-    };
     ViewData["Title"] = "Detalhes";
 }
 
@@ -42,7 +36,7 @@
     <a class="btn btn-info" asp-action="Index">Voltar</a>
 </div>
 
-<partial name="_DetalhesEndereco" view-data="viewData" />
+<partial name="_DetalhesEndereco"/>
 
 
 

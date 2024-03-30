@@ -43,10 +43,10 @@
                 <a class="btn btn-info" asp-controller="Produtos" asp-action="Details" asp-route-id="@item.Id">
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </a> 
-                <a class="btn btn-warning" asp-controller="Produtos" asp-action="Edit" asp-route-id="@item.Id">
+                    <a class="btn btn-warning" supress-by-claim-name="Produto" supress-by-claim-value="Editar" asp-controller="Produtos" asp-action="Edit" asp-route-id="@item.Id">
                     <i class="fa-solid fa-pencil"></i>
                 </a> 
-                <a class="btn btn-danger"  asp-controller="Produtos"asp-action="Delete" asp-route-id="@item.Id">
+                <a class="btn btn-danger" supress-by-claim-name="Produto"  supress-by-claim-value="Excluir"  asp-controller="Produtos"asp-action="Delete" asp-route-id="@item.Id">
                     <i class="fa-solid fa-trash"></i>
                 </a>
             </td>
